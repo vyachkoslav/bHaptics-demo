@@ -35,7 +35,7 @@ public class BhapticsDotPoint : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (!other.GetComponentInChildren<BhapticsDotPointController>())
+        if (!other.GetComponentInParent<Unity.XR.CoreUtils.XROrigin>())
         {
             particles.Play();
             Toggle();
@@ -43,7 +43,7 @@ public class BhapticsDotPoint : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
-        if (!other.GetComponentInChildren<BhapticsDotPointController>())
+        if (!other.GetComponentInParent<Unity.XR.CoreUtils.XROrigin>())
         {
             particles.Play();
             Toggle();
