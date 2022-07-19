@@ -36,6 +36,8 @@ public class TorsoRotator : MonoBehaviour
 
             float height = head.transform.position.y;
             float ratio = height / maxHeadHeight;
+            ratio = Mathf.Clamp01(ratio);
+
             float eulerAmount = Mathf.Abs(90f * ratio - 90f);
             torso.eulerAngles = new Vector3(eulerAmount, torso.eulerAngles.y, torso.eulerAngles.z);
         }

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     }
     public static void LooseGame()
     {
-        SceneManager.LoadScene("Demo");
+        SceneManager.LoadScene("Menu");
     }
     public static void CloseGame()
     {
