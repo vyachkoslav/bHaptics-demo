@@ -25,10 +25,14 @@ public class Player : MonoBehaviour
         set
         {
             multiplier = Mathf.Clamp(value, 1, maxMultiplier);
+
+            if (multiplier > MaxMultiplierAchieved)
+                MaxMultiplierAchieved = value;
         }
     }
+    public int MaxMultiplierAchieved{ get; private set; }
     
-    public float Score { get; private set; }
+    public int Score { get; private set; }
 
     private void Start()
     {

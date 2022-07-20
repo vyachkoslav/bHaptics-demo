@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameStateHandler _handler;
+    static GameStateHandler handler;
+
+    private void Start()
+    {
+        if (_handler)
+            handler = _handler;
+    }
     public static void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
@@ -15,7 +23,10 @@ public class GameManager : MonoBehaviour
     }
     public static void LooseGame()
     {
-        SceneManager.LoadScene("Menu");
+        if (handler)
+            handler.HandleLoose();
+        else
+            SceneManager.LoadScene("Menu");
     }
     public static void CloseGame()
     {

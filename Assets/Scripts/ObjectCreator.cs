@@ -6,4 +6,5 @@ public abstract class ObjectCreator : MonoBehaviour
 {
     public abstract GameObject InstantiateObject(string name);
     public abstract void DestroyObject(GameObject obj);
+    public abstract void DestroyAllCreatedObjects();
 }

@@ -60,4 +60,8 @@ public class ObjectPooler : ObjectCreator
     {
         obj.SetActive(false);
     }
+    public override void DestroyAllCreatedObjects()
+    {
+        pooledObjects.ForEach(x => x.Instance.SetActive(false));
+    }
 }
