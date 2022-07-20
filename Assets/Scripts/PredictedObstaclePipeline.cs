@@ -20,7 +20,7 @@ public class PredictedObstaclePipeline : MonoBehaviour
     List<GameObject> activeObjects;
     int currentIndex;
 
-    void Start()
+    protected void Start()
     {
         activeObjects = new List<GameObject>();
     }

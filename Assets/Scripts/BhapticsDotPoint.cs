@@ -15,6 +15,7 @@ public class BhapticsDotPoint : MonoBehaviour
     private BhapticsDotPointController controller;
     private DotPoint dotPoint;
     [SerializeField] ParticleSystem particles;
+    [SerializeField] AudioSource audioSource;
 
 
 
@@ -43,6 +44,8 @@ public class BhapticsDotPoint : MonoBehaviour
         {
             PlayEffect();
             Toggle();
+            if (!audioSource.isPlaying)
+                audioSource.Play();
         }
     }
     public void OnTriggerExit(Collider other)

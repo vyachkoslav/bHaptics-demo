@@ -11,8 +11,9 @@ public class InfiniteObstaclePipeline : PredictedObstaclePipeline
     int sameInARow;
     string lastObject;
 
-    private void Start()
+    protected new void Start()
     {
+        base.Start();
         if (maxSameObjectsInARow == 0)
             maxSameObjectsInARow = int.MaxValue;
     }
