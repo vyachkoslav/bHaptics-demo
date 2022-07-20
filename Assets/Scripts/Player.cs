@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     
     public int Score { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         ResetMultiplier();
         Lives = maxLives;

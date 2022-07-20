@@ -44,7 +44,7 @@ public class Leaderboard : MonoBehaviour
             StartCoroutine(AddScore(nameInput.text, player.Score));
         }
     }
-    IEnumerator AddScore(string name, int score)
+    IEnumerator AddScore(string name, int score) // todo safe request
     {
         string query = "name=" + name + "&" + "score=" + score;
         UnityWebRequest hs_get = UnityWebRequest.Get(addScoreURL + query);

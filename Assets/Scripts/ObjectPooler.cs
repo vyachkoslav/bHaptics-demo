@@ -6,14 +6,14 @@ using UnityEngine;
 public class ObjectPooler : ObjectCreator
 {
     [Serializable]
-    class ObjectCount
+    protected class ObjectCount
     {
         public string Name;
         public GameObject Instance;
         public uint Count;
     }
     [SerializeField] List<ObjectCount> objectsToPool;
-    List<ObjectCount> pooledObjects = new List<ObjectCount>();
+    protected List<ObjectCount> pooledObjects = new List<ObjectCount>();
 
     public static ObjectPooler Instance { get; private set; }
 
@@ -31,7 +31,6 @@ public class ObjectPooler : ObjectCreator
         {
             for (int i = 0; i <= obj.Count; ++i)
             {
-
                 ObjectCount newObject = new ObjectCount()
                 { 
                     Name = obj.Name, 

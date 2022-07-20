@@ -19,7 +19,10 @@ public class GameManager : MonoBehaviour
     }
     public static void WinGame()
     {
-        SceneManager.LoadScene("Demo");
+        if (handler)
+            handler.HandleWin();
+        else
+            SceneManager.LoadScene("Demo");
     }
     public static void LooseGame()
     {

@@ -1784,7 +1784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Leaderboard:'
+  m_text: Leaderboard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3456,6 +3456,7 @@ GameObject:
   - component: {fileID: 500898956}
   - component: {fileID: 500898958}
   - component: {fileID: 500898957}
+  - component: {fileID: 500898959}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -3531,19 +3532,11 @@ MonoBehaviour:
   spawnPosition: {x: -25, y: 0, z: 0.033}
   removePosition: {x: 20, y: 0, z: 0.011}
   moveDirection: {x: 1, y: 0, z: 0}
-  speed: 5
+  speed: 7.5
   acceleration: 0.1
   objectsToUse:
   - Center
-  - Left
-  - Right
-  - LeftRight
-  - Sit
-  - SitCenter
-  - SitRight
-  - SitLeft
   maxActiveObjects: 30
-  maxSameObjectsInARow: 2
   distanceBetweenObjects: 15
 --- !u!114 &500898955
 MonoBehaviour:
@@ -3632,6 +3625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endMenu: {fileID: 1127615533}
+  menuTitle: {fileID: 407963175}
   creator: {fileID: 500898951}
   scriptsToActivate:
   - {fileID: 492027962}
@@ -3639,6 +3633,36 @@ MonoBehaviour:
   objectsToHide:
   - {fileID: 905118328}
   - {fileID: 1628608553476403}
+--- !u!114 &500898959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500898950}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298f69047a479f343a1e034105f0adbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectCreator: {fileID: 500898951}
+  spawnPosition: {x: -25, y: 0, z: 0.033}
+  removePosition: {x: 20, y: 0, z: 0.011}
+  moveDirection: {x: 1, y: 0, z: 0}
+  speed: 5
+  acceleration: 0.1
+  objectsToUse:
+  - Center
+  - Left
+  - Right
+  - LeftRight
+  - Sit
+  - SitCenter
+  - SitRight
+  - SitLeft
+  maxActiveObjects: 30
+  distanceBetweenObjects: 15
+  maxSameObjectsInARow: 3
 --- !u!1 &508878880
 GameObject:
   m_ObjectHideFlags: 0
@@ -4859,7 +4883,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

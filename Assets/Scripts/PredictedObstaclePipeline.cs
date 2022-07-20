@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstaclePipeline : MonoBehaviour
+public class PredictedObstaclePipeline : MonoBehaviour
 {
     [SerializeField] ObjectCreator objectCreator;
 
@@ -12,15 +12,13 @@ public class ObstaclePipeline : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float acceleration;
 
-    [SerializeField] List<string> objectsToUse;
+    [SerializeField] protected List<string> objectsToUse;
     [SerializeField] int maxActiveObjects;
-    [SerializeField] int maxSameObjectsInARow;
-    int sameInARow;
-    string lastObject;
 
     [SerializeField] float distanceBetweenObjects;
 
     List<GameObject> activeObjects;
+    int currentIndex;
 
     void Start()
     {
@@ -29,6 +27,7 @@ public class ObstaclePipeline : MonoBehaviour
 
     void Update()
     {
+        MoveAllObjects();
         DeleteFarObjects();
 
         int activeCount = activeObjects.Count;
@@ -43,31 +42,25 @@ public class ObstaclePipeline : MonoBehaviour
             if(distanceFromLastToSpawn >= distanceBetweenObjects)
             {
                 GameObject newObject = GetNewObject();
+                if (!newObject)
+                    return;
                 newObject.transform.position = spawnPosition;
                 activeObjects.Add(newObject);
             }
         }
 
-        MoveAllObjects();
     }
 
+    protected virtual string SelectNewObject()
+    {
+        if (currentIndex >= objectsToUse.Count)
+            return string.Empty;
+
+        return objectsToUse[currentIndex++];
+    }
     GameObject GetNewObject()
     {
-        string selected = objectsToUse[Random.Range(0, objectsToUse.Count)];
-        if (selected == lastObject)
-        {
-            if (++sameInARow > maxSameObjectsInARow)
-            {
-                while (selected == lastObject)
-                    selected = objectsToUse[Random.Range(0, objectsToUse.Count)];
-                sameInARow = 0;
-            }
-        }
-        else
-        {
-            sameInARow = 0;
-        }
-
+        string selected = SelectNewObject();
         return objectCreator.InstantiateObject(selected);
     }
 
@@ -75,7 +68,7 @@ public class ObstaclePipeline : MonoBehaviour
     {
         foreach(GameObject obj in activeObjects)
         {
-            obj.transform.position += moveDirection * speed * Time.deltaTime;
+            obj.transform.position += speed * Time.deltaTime * moveDirection;
         }
     }
     void DeleteFarObjects()
@@ -87,9 +80,10 @@ public class ObstaclePipeline : MonoBehaviour
                 activeObjects.Remove(obj);
                 objectCreator.DestroyObject(obj);
                 speed += acceleration;
+                if (activeObjects.Count == 0)
+                    GameManager.WinGame();
                 break;
             }
-
         }
     }
 }
