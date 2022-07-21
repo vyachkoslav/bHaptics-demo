@@ -37,8 +37,8 @@ public class Leaderboard : MonoBehaviour
     }
     public void AddClicked(Button caller)
     {
-        string name = nameInput.text;
-        if (name[0] - '0' != 8155)
+        string name = nameInput.text.Trim();
+        if (name != string.Empty && name[0] - '0' != 8155)
         {
             caller.interactable = false;
             StartCoroutine(AddScore(nameInput.text, player.Score));

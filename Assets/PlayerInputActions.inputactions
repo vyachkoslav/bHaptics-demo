@@ -30,7 +30,7 @@
                 {
                     "name": "",
                     "id": "4a7c7388-0754-4baa-939b-2d931a174f78",
-                    "path": "*/{PrimaryButton}",
+                    "path": "*/{MenuButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

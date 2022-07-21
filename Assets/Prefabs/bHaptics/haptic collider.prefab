@@ -117,6 +117,8 @@ MonoBehaviour:
   motorIntensity: 100
   particles: {fileID: 8758406542276865860}
   audioSource: {fileID: 1397311697147771676}
+  defaultMat: {fileID: 2100000, guid: 95b5e37109190c740af4c4a15423c812, type: 2}
+  activeMat: {fileID: 2100000, guid: 70b1221c544325749be1fecb2d66bc9f, type: 2}
 --- !u!54 &7767286357066207874
 Rigidbody:
   m_ObjectHideFlags: 0

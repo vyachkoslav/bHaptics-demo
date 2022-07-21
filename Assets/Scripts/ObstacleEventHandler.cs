@@ -25,15 +25,24 @@ public class ObstacleEventHandler : MonoBehaviour
                 output.UpdateOutput();
         }
     }
+    public void AddPlayerScore(int amount)
+    {
+        player.AddScore(amount);
+        if (output)
+            output.UpdateOutput();
+    }
+    public void AddPlayerCombo(int amount)
+    {
+        player.Multiplier += amount;
+        if (output)
+            output.UpdateOutput();
+    }
     public void HandleScore(Transform other)
     {
         if (player)
         {
-            player.AddScore(scorePerObstacle);
-            player.Multiplier++;
-
-            if(output)
-                output.UpdateOutput();
+            AddPlayerScore(scorePerObstacle);
+            AddPlayerCombo(1);
 
             if (other.TryGetComponent(out AudioSource source))
             {

@@ -16,8 +16,21 @@ public class BhapticsDotPoint : MonoBehaviour
     private DotPoint dotPoint;
     [SerializeField] ParticleSystem particles;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] Material defaultMat;
+    [SerializeField] Material activeMat;
 
-
+    bool _active;
+    protected bool active { 
+        get { return _active; }
+        set
+        {
+            _active = value;
+            if (value)
+                GetComponent<MeshRenderer>().material = activeMat;
+            else
+                GetComponent<MeshRenderer>().material = defaultMat;
+        }
+    }
 
     void Awake()
     {
@@ -37,22 +50,27 @@ public class BhapticsDotPoint : MonoBehaviour
     public void PlayEffect()
     {
         particles.Play();
+        if (!audioSource.isPlaying)
+            audioSource.Play();
     }
-    public void OnTriggerEnter(Collider other)
+    protected bool IsPlayer(GameObject obj)
     {
-        if (!other.GetComponentInParent<Unity.XR.CoreUtils.XROrigin>())
+        return obj.TryGetComponent<Player>(out var _) || obj.GetComponentInParent<Player>();
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (!active && !IsPlayer(other.gameObject))
         {
+            active = true;
             PlayEffect();
             Toggle();
-            if (!audioSource.isPlaying)
-                audioSource.Play();
         }
     }
-    public void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (!other.GetComponentInParent<Unity.XR.CoreUtils.XROrigin>())
+        if (active && !IsPlayer(other.gameObject))
         {
-            PlayEffect();
+            active = false;
             Toggle();
         }
     }

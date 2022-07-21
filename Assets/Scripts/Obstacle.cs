@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour
         if (triggered)
             return;
 
-        if(other.gameObject.GetComponentInParent<XROrigin>())
+        if(other.gameObject.GetComponentInParent<Player>())
         {
             ObstacleEventHandler.Instance.HandlePlayerHit();
             triggered = true;

@@ -18,7 +18,6 @@ public class GameStateHandler : MonoBehaviour
 
     public void HandleLoose()
     {
-        Time.timeScale = 0f;
         if(creator)
             creator.DestroyAllCreatedObjects();
         endMenu.SetActive(true);
@@ -26,6 +25,7 @@ public class GameStateHandler : MonoBehaviour
 
         scriptsToActivate.ForEach(x => x.enabled = true);
         objectsToHide.ForEach(x => x.SetActive(false));
+        Time.timeScale = 0f;
     }
     public void HandleWin()
     {
