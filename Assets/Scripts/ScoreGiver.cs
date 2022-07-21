@@ -10,7 +10,6 @@ public class ScoreGiver : MonoBehaviour
     {
         if (other.GetComponentInParent<Player>())
         {
-            print(scoreAmount);
             ObstacleEventHandler.Instance.AddPlayerScore(scoreAmount);
             Destroy(gameObject);
         }

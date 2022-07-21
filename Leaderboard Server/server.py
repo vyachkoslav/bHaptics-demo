@@ -54,8 +54,12 @@ class LeaderboardServer(BaseHTTPRequestHandler):
             
     def get_leaderboard(self):
         cursor.execute(self.get_query)
-        results = cursor.fetchall()
-        return results
+        desc = cursor.description
+        column_names = [col[0] for col in desc]
+        results = [dict(zip(column_names, row))  
+                   for row in cursor.fetchall()]
+        out = {"Items" : results}
+        return out
     def add_to_leaderboard(self, name, score):
         cursor.execute(self.add_query, (name, score, score, score))
         connection.commit()

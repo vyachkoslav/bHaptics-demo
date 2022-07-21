@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,21 @@ using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
+    [Serializable]
+    struct PlayerScore
+    {
+        public PlayerScore(string _name, int _score)
+        { 
+            name = _name;
+            score = _score;
+        }
+        public string name;
+        public int score;
+    }
+
     string addScoreURL = "http://localhost/add?";
     string getTopURL = "http://localhost/gettop?";
-    string leaderboardURL = "http://localhost/getstr";
+    string leaderboardURL = "http://localhost/get";
 
     //Text to display the result on
     public TMPro.TextMeshProUGUI statusText;
@@ -32,7 +45,13 @@ public class Leaderboard : MonoBehaviour
         }
         else
         {
-            statusText.text = hs_get.downloadHandler.text;
+            PlayerScore[] leaderboard = JsonHelper.FromJson<PlayerScore>(hs_get.downloadHandler.text);
+            statusText.text = string.Empty;
+            foreach (PlayerScore score in leaderboard)
+            {
+                string row = score.name + ": " + score.score;
+                statusText.text += row + "\n";
+            }
         }
     }
     public void AddClicked(Button caller)
