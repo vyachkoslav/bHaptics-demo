@@ -9,7 +9,6 @@ public class BhapticToggleDotPoint : BhapticsDotPoint
     {
         if (!IsPlayer(other.gameObject))
         {
-            active = !active;
             PlayEffect();
             Toggle();
         }

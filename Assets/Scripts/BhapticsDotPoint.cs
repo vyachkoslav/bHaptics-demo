@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using Bhaptics.Tact;
 using Bhaptics.Tact.Unity;
 
-
 public class BhapticsDotPoint : MonoBehaviour
 {
     public int motorIndex = 0;
@@ -19,19 +18,6 @@ public class BhapticsDotPoint : MonoBehaviour
     [SerializeField] Material defaultMat;
     [SerializeField] Material activeMat;
 
-    bool _active;
-    protected bool active { 
-        get { return _active; }
-        set
-        {
-            _active = value;
-            if (value)
-                GetComponent<MeshRenderer>().material = activeMat;
-            else
-                GetComponent<MeshRenderer>().material = defaultMat;
-        }
-    }
-
     void Awake()
     {
         dotPoint = new DotPoint(motorIndex, motorIntensity);
@@ -40,12 +26,26 @@ public class BhapticsDotPoint : MonoBehaviour
 
     public void Toggle()
     {
-        if (controller == null)
+        if (controller)
         {
-            return;
+            controller.Toggle(dotPoint);
+            if (controller.IsActive(dotPoint))
+                GetComponent<MeshRenderer>().material = activeMat;
+            else
+                GetComponent<MeshRenderer>().material = defaultMat;
         }
-
-        controller.Toggle(dotPoint);
+    }
+    public void TurnOn()
+    {
+        if (controller)
+            controller.TurnOn(dotPoint);
+        GetComponent<MeshRenderer>().material = activeMat;
+    }
+    public void TurnOff()
+    {
+        if (controller)
+            controller.TurnOff(dotPoint);
+        GetComponent<MeshRenderer>().material = defaultMat;
     }
     public void PlayEffect()
     {
@@ -59,19 +59,21 @@ public class BhapticsDotPoint : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (!active && !IsPlayer(other.gameObject))
+        if (!IsPlayer(other.gameObject))
         {
-            active = true;
             PlayEffect();
-            Toggle();
+            TurnOn();
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (active && !IsPlayer(other.gameObject))
+        if (!IsPlayer(other.gameObject))
         {
-            active = false;
-            Toggle();
+            TurnOff();
         }
+    }
+    private void OnDisable()
+    {
+        TurnOff();
     }
 }

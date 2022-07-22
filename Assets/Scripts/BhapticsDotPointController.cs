@@ -35,7 +35,7 @@ public class BhapticsDotPointController : MonoBehaviour
 
     public void Toggle(DotPoint dot)
     {
-        if (dotPointList.Contains(dot))
+        if (IsActive(dot))
         {
             RemoveAtList(dot);
         }
@@ -44,7 +44,20 @@ public class BhapticsDotPointController : MonoBehaviour
             AddToList(dot);
         }
     }
-
+    public void TurnOn(DotPoint dot)
+    {
+        if (!IsActive(dot))
+            AddToList(dot);
+    }
+    public void TurnOff(DotPoint dot)
+    {
+        if (IsActive(dot))
+            RemoveAtList(dot);
+    }
+    public bool IsActive(DotPoint dot)
+    {
+        return dotPointList.Contains(dot);
+    }
 
     private bool AddToList(DotPoint dot)
     {
