@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
+
+/// <summary>
+/// Gives score to the player if he dodges it
+/// </summary>
 public class Obstacle : MonoBehaviour
 {
     const int k_playerLayer = 8;

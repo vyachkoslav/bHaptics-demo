@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles interactions with obstacles
+/// </summary>
 public class ObstacleEventHandler : MonoBehaviour
 {
     [SerializeField] int scorePerObstacle;
@@ -14,6 +17,9 @@ public class ObstacleEventHandler : MonoBehaviour
         Instance = this;
     }
 
+    /// <summary>
+    /// Handles event when player hits the obstacle
+    /// </summary>
     public void HandlePlayerHit()
     {
         if (player)
@@ -37,6 +43,9 @@ public class ObstacleEventHandler : MonoBehaviour
         if (output)
             output.UpdateOutput();
     }
+    /// <summary>
+    /// Handles event when player dodges the obstacle
+    /// </summary>
     public void HandleScore(Transform other)
     {
         if (player)

@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Object creator which creates all objects on load and activates them when needed.
+/// </summary>
 public class ObjectPooler : ObjectCreator
 {
     [Serializable]
@@ -12,18 +15,11 @@ public class ObjectPooler : ObjectCreator
         public GameObject Instance;
         public uint Count;
     }
+    /// <summary>
+    /// Objects to spawn on load
+    /// </summary>
     [SerializeField] List<ObjectCount> objectsToPool;
     protected List<ObjectCount> pooledObjects = new List<ObjectCount>();
-
-    public static ObjectPooler Instance { get; private set; }
-
-    void Awake()
-    {
-        if (!Instance)
-            Instance = this;
-        else
-            Destroy(this);
-    }
 
     void Start()
     {

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Imitates torso rotation of the player
+/// </summary>
 public class TorsoRotator : MonoBehaviour
 {
     [SerializeField] Transform torso;
@@ -20,7 +23,7 @@ public class TorsoRotator : MonoBehaviour
 
     private void Update()
     {
-        if (leftHand && rightHand)
+        if (leftHand && rightHand) // directs body between hands
         {
             Vector3 filter = Vector3.forward + Vector3.right;
             Vector3 dirToLeft = (leftHand.position - rightHand.position).normalized;
@@ -30,10 +33,11 @@ public class TorsoRotator : MonoBehaviour
             Quaternion lookRot = Quaternion.LookRotation(dirToLeft);
             torso.rotation = lookRot;
         }
-        if(head)
+        if(head) 
         {
             torso.position = head.position + offset; // follow head
 
+            // handles player sitting
             float height = head.transform.position.y;
             float ratio = height / maxHeadHeight;
             ratio = Mathf.Clamp01(ratio);

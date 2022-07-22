@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Wraps arrays to json and back
+/// </summary>
 public static class JsonHelper
 {
     public static T[] FromJson<T>(string json)

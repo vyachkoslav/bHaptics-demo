@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Bhaptics.Tact;
 using Bhaptics.Tact.Unity;
 
+/// <summary>
+/// Point which activates haptics on collision
+/// </summary>
 public class BhapticsDotPoint : MonoBehaviour
 {
     public int motorIndex = 0;

@@ -15,6 +15,6 @@ public class BhapticToggleDotPoint : BhapticsDotPoint
     }
     private void OnTriggerExit(Collider other)
     {
-        
+        // hides ontriggerexit of parent
     }
 }

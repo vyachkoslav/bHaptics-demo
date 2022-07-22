@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Player lives and score data
+/// </summary>
 public class Player : MonoBehaviour
 {
     [SerializeField] int maxLives;

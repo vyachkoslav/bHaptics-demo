@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Spawns obstacles endlessly
+/// </summary>
 public class InfiniteObstaclePipeline : PredictedObstaclePipeline
 {
     /// <summary>

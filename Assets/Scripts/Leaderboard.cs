@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
+    /// <summary>
+    /// Structure to deserialize from json
+    /// </summary>
     [Serializable]
     struct PlayerScore
     {
@@ -19,13 +22,23 @@ public class Leaderboard : MonoBehaviour
         public int score;
     }
 
-    string addScoreURL = "http://localhost/add?";
-    string getTopURL = "http://localhost/gettop?";
-    string leaderboardURL = "http://localhost/get";
+    const string addScoreURL = "http://localhost/add?";
+    const string getTopURL = "http://localhost/gettop?";
+    const string leaderboardURL = "http://localhost/get";
 
-    //Text to display the result on
+    /// <summary>
+    /// Text to display the result on
+    /// </summary>
     public TMPro.TextMeshProUGUI statusText;
+
+    /// <summary>
+    /// Text to display position of the player on the leaderboard
+    /// </summary>
     public TMPro.TextMeshProUGUI topPositionText;
+
+    /// <summary>
+    /// InputField which gets player name
+    /// </summary>
     public TMPro.TMP_InputField nameInput;
     public Player player;
 
@@ -34,6 +47,10 @@ public class Leaderboard : MonoBehaviour
         StartCoroutine(GetScores());
         StartCoroutine(GetTop());
     }
+
+    /// <summary>
+    /// Gets leaderboard scores
+    /// </summary>
     IEnumerator GetScores()
     {
         UnityWebRequest hs_get = UnityWebRequest.Get(leaderboardURL);
@@ -54,15 +71,23 @@ public class Leaderboard : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Called by onClick event
+    /// </summary>
     public void AddClicked(Button caller)
     {
         string name = nameInput.text.Trim();
-        if (name != string.Empty && name[0] - '0' != 8155)
+        if (name != string.Empty && name[0] - '0' != 8155) // sometimes the empty string appears to be 8155 char - ?
         {
             caller.interactable = false;
             StartCoroutine(AddScore(nameInput.text, player.Score));
         }
     }
+
+    /// <summary>
+    /// Adds player score to the leaderboard
+    /// </summary>
     IEnumerator AddScore(string name, int score) // todo safe request
     {
         string query = "name=" + name + "&" + "score=" + score;
@@ -74,6 +99,10 @@ public class Leaderboard : MonoBehaviour
             StartCoroutine(GetScores());
         
     }
+
+    /// <summary>
+    /// Gets position of the player in the leaderboard
+    /// </summary>
     IEnumerator GetTop()
     {
         string query = "score=" + player.Score;

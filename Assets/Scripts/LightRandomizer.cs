@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Randomizes light color on enable
+/// </summary>
 public class LightRandomizer : MonoBehaviour
 {
     [SerializeField] List<Color> possibleColors;

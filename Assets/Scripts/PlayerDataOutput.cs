@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Outputs player data on the textmeshes
+/// </summary>
 public class PlayerDataOutput : MonoBehaviour
 {
     [SerializeField] Player player;

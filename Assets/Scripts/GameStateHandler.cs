@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class GameStateHandler : MonoBehaviour
 {
+    /// <summary>
+    /// Menu to appear when the game ends
+    /// </summary>
     [SerializeField] GameObject endMenu;
+    /// <summary>
+    /// Title of the end menu
+    /// </summary>
     [SerializeField] TMPro.TextMeshProUGUI menuTitle;
+    /// <summary>
+    /// Object that creates obstacles
+    /// </summary>
     [SerializeField] ObjectCreator creator;
+    /// <summary>
+    /// Scripts to active when the game ends
+    /// </summary>
     [SerializeField] List<MonoBehaviour> scriptsToActivate;
+    /// <summary>
+    /// Objects to deactivate when the game ends
+    /// </summary>
     [SerializeField] List<GameObject> objectsToHide;
 
     void Start()

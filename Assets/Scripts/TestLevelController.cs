@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// UI controls handler
+/// </summary>
 public class TestLevelController : MonoBehaviour
 {
     [SerializeField] Transform playerOrigin;
