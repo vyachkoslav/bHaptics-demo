@@ -25,6 +25,9 @@ public class GameStateHandler : MonoBehaviour
 
         scriptsToActivate.ForEach(x => x.enabled = true);
         objectsToHide.ForEach(x => x.SetActive(false));
+        var dots = FindObjectsOfType<BhapticsDotPoint>();
+        foreach(var dot in dots)
+            dot.enabled = false;
         Time.timeScale = 0f;
     }
     public void HandleWin()

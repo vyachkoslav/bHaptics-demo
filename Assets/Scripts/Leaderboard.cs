@@ -68,7 +68,11 @@ public class Leaderboard : MonoBehaviour
         string query = "name=" + name + "&" + "score=" + score;
         UnityWebRequest hs_get = UnityWebRequest.Get(addScoreURL + query);
         yield return hs_get.SendWebRequest();
-        StartCoroutine(GetScores());
+        if (hs_get.error != null)
+            print("There was an error getting the leaderboard: " + hs_get.error);
+        else
+            StartCoroutine(GetScores());
+        
     }
     IEnumerator GetTop()
     {
@@ -76,12 +80,8 @@ public class Leaderboard : MonoBehaviour
         UnityWebRequest hs_get = UnityWebRequest.Get(getTopURL + query);
         yield return hs_get.SendWebRequest();
         if (hs_get.error != null)
-        {
             print("There was an error getting the leaderboard: " + hs_get.error);
-        }
         else
-        {
             topPositionText.text = hs_get.downloadHandler.text;
-        }
     }
 }
