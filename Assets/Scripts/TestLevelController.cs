@@ -9,11 +9,25 @@ public class TestLevelController : MonoBehaviour
 {
     [SerializeField] Transform playerOrigin;
     [SerializeField] Transform playerTransform;
-    [SerializeField] Transform testObject;
     [SerializeField] Vector3 defaultPosition;
+
+    [SerializeField] Transform testObject;
+    Vector3 defaultObjectPosition;
+    Quaternion defaultObjectRotation;
+
+    private void Awake()
+    {
+        defaultObjectPosition = testObject.position;
+        defaultObjectRotation = testObject.rotation;
+    }
     public void ResetPlayerPos()
     {
         playerOrigin.position += defaultPosition - playerTransform.position;
+    }
+    public void ResetObject()
+    {
+        testObject.position = defaultObjectPosition;
+        testObject.rotation = defaultObjectRotation;
     }
     public void RotateTestObjectBy180()
     {

@@ -1661,8 +1661,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOrigin: {fileID: 1556969237}
   playerTransform: {fileID: 998917617}
-  testObject: {fileID: 256198201}
   defaultPosition: {x: 0, y: 1.732, z: 0}
+  testObject: {fileID: 256198201}
 --- !u!1 &1403096857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +1962,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1399291843}
         m_TargetAssemblyTypeName: TestLevelController, Assembly-CSharp
-        m_MethodName: ResetPlayerPos
+        m_MethodName: ResetObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
