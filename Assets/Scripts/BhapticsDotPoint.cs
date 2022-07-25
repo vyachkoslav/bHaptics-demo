@@ -17,7 +17,7 @@ public class BhapticsDotPoint : MonoBehaviour
     private BhapticsDotPointController controller;
     private DotPoint dotPoint;
     [SerializeField] ParticleSystem particles;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] hapticSoundEffect hapticSound;
     [SerializeField] Material defaultMat;
     [SerializeField] Material activeMat;
 
@@ -53,8 +53,8 @@ public class BhapticsDotPoint : MonoBehaviour
     public void PlayEffect()
     {
         particles.Play();
-        if (!audioSource.isPlaying)
-            audioSource.Play();
+        if (!hapticSound.isPlaying)
+            hapticSound.Play();
     }
     protected bool IsPlayer(GameObject obj)
     {

@@ -19,17 +19,10 @@ public class Bhaptics3DVisualizer : MonoBehaviour
             return;
         }
 
-        var haptic = BhapticsManager.GetHaptic();
-
-        if (haptic == null)
-        {
-            return;
-        }
-
         foreach (var vis in visualFeedback)
         {
-            var feedback = haptic.GetCurrentFeedback(BhapticsUtils.ToPositionType(vis.devicePos));
-    
+            var feedback = BhapticsVirtualManager.GetCurrentFeedback(BhapticsUtils.ToPositionType(vis.devicePos));
+
             vis.UpdateFeedback(feedback);
         }
     }

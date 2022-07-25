@@ -23,14 +23,7 @@ public class BhapticsDotPointController : MonoBehaviour
 
     void Update()
     {
-        var haptic = BhapticsManager.GetHaptic();
-
-        if (haptic == null)
-        {
-            return;
-        }
-
-        haptic.Submit(key, BhapticsUtils.ToPositionType(clipPositionType), dotPointList, duration);
+        BhapticsVirtualManager.Submit(key, BhapticsUtils.ToPositionType(clipPositionType), dotPointList, duration);
     }
 
     public void Toggle(DotPoint dot)
