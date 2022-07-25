@@ -8,7 +8,6 @@ using Bhaptics.Tact;
 public class Visual3DFeedback : MonoBehaviour
 {
     public HapticClipPositionType devicePos = HapticClipPositionType.Head;
-    public Gradient motorFeedbackGradient;
 
     private BhapticsDotPoint[] motors;
 
@@ -28,10 +27,11 @@ public class Visual3DFeedback : MonoBehaviour
     {
         if (motors == null)
             return;
+
         foreach(var motor in motors)
         {
-            if (motor == null)
-                return;
+            if (motor == null || motor.motorIndex >= feedbackValues.Length)
+                continue;
 
             float intensity = feedbackValues[motor.motorIndex];
             if (intensity > 0f)
