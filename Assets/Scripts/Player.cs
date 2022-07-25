@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
         {
             lives = Mathf.Clamp(value, 0, maxLives);
             if (lives == 0)
-                GameManager.LooseGame();
+                GameManager.LooseGame("Game over");
         }
     }
 

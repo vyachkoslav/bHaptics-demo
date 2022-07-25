@@ -24,15 +24,21 @@ public class GameManager : MonoBehaviour
         else
             SceneManager.LoadScene("Demo");
     }
-    public static void LooseGame()
+    public static void LooseGame(string reason)
     {
         if (handler)
-            handler.HandleLoose();
+            handler.HandleLoose(reason);
         else
             SceneManager.LoadScene("Menu");
     }
     public static void CloseGame()
     {
         Application.Quit();
+    }
+
+    public static void ResetPlayerPosition()
+    {
+        if(handler)
+            handler.PlayerReset();
     }
 }
