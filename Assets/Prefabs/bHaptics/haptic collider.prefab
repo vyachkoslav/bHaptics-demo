@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 336301279561300298}
   - component: {fileID: 7767286357066207874}
   - component: {fileID: 1397311697147771676}
+  - component: {fileID: 3128678297669839086}
   m_Layer: 8
   m_Name: haptic collider
   m_TagString: Untagged
@@ -116,7 +117,7 @@ MonoBehaviour:
   motorIndex: 0
   motorIntensity: 100
   particles: {fileID: 8758406542276865860}
-  audioSource: {fileID: 1397311697147771676}
+  hapticSound: {fileID: 3128678297669839086}
   defaultMat: {fileID: 2100000, guid: 95b5e37109190c740af4c4a15423c812, type: 2}
   activeMat: {fileID: 2100000, guid: 70b1221c544325749be1fecb2d66bc9f, type: 2}
 --- !u!54 &7767286357066207874
@@ -231,6 +232,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3128678297669839086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272089672737634974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b2ca809e277674c889920d91df64df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: b3adb9aa2c1f1eb44b80fa4144666538, type: 3}
+  - {fileID: 8300000, guid: f4ec56d29e18e714bb32cf14b3e8c958, type: 3}
+  - {fileID: 8300000, guid: 7f9dc30d9407b5d43b133651b6ec492d, type: 3}
+  audioSource: {fileID: 1397311697147771676}
 --- !u!1001 &3749342225323420503
 PrefabInstance:
   m_ObjectHideFlags: 0
