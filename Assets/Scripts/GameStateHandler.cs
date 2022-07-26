@@ -35,7 +35,7 @@ public class GameStateHandler : MonoBehaviour
     void Start()
     {
         endMenu.SetActive(false);
-        SetTimeScale(1);
+        GameManager.SetTimeScale(1);
         
 
         if(playerData)
@@ -44,7 +44,7 @@ public class GameStateHandler : MonoBehaviour
 
     public void HandleLoose(string reason)
     {
-        SetTimeScale(0.5f);
+        GameManager.SetTimeScale(0.5f);
         StartCoroutine(ShowMenuAfterTime(reason, 2));
     }
     IEnumerator ShowMenuAfterTime(string title, float seconds)
@@ -61,7 +61,7 @@ public class GameStateHandler : MonoBehaviour
         foreach (var dot in dots)
             dot.enabled = false;
 
-        SetTimeScale(0);
+        GameManager.SetTimeScale(0);
     }
     public void HandleWin()
     {
@@ -73,12 +73,5 @@ public class GameStateHandler : MonoBehaviour
 
         if(playerData)
             playerData.originPosition = playerOrigin.position;
-    }
-
-    static void SetTimeScale(float scale)
-    {
-        Time.timeScale = scale;
-        List<AudioSource> audios = new(FindObjectsOfType<AudioSource>());
-        audios.ForEach(x => x.pitch = scale);
     }
 }

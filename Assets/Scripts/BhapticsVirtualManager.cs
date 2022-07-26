@@ -4,6 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Stores haptics data when bHaptics isn't active
+/// </summary>
 public class BhapticsVirtualManager
 {
     static Dictionary<PositionType, List<DotPoint>> hapticDots = new();

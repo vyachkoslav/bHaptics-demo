@@ -41,4 +41,11 @@ public class GameManager : MonoBehaviour
         if(handler)
             handler.PlayerReset();
     }
+
+    public static void SetTimeScale(float scale)
+    {
+        Time.timeScale = scale;
+        List<AudioSource> audios = new(FindObjectsOfType<AudioSource>());
+        audios.ForEach(x => x.pitch = scale);
+    }
 }
