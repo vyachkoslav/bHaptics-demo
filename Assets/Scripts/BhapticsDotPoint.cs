@@ -25,6 +25,8 @@ public class BhapticsDotPoint : MonoBehaviour
     {
         dotPoint = new DotPoint(motorIndex, motorIntensity);
         controller = GetComponentInParent<BhapticsDotPointController>();
+        if(hapticSound == null)
+            TryGetComponent(out hapticSound);
     }
 
     public void Toggle()
@@ -56,13 +58,14 @@ public class BhapticsDotPoint : MonoBehaviour
         if (!hapticSound.isPlaying)
             hapticSound.Play();
     }
-    protected bool IsPlayer(GameObject obj)
+    protected bool HasComponent<Component>(GameObject obj) where Component : UnityEngine.Component
     {
-        return obj.TryGetComponent<Player>(out var _) || obj.GetComponentInParent<Player>();
+        return obj.TryGetComponent<Component>(out var _) || obj.GetComponentInParent<Component>();
+
     }
     void OnTriggerEnter(Collider other)
     {
-        if (!IsPlayer(other.gameObject))
+        if (HasComponent<HapticSender>(other.gameObject))
         {
             PlayEffect();
             TurnOn();
@@ -70,7 +73,7 @@ public class BhapticsDotPoint : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        if (!IsPlayer(other.gameObject))
+        if (HasComponent<HapticSender>(other.gameObject))
         {
             TurnOff();
         }

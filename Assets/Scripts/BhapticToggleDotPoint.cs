@@ -1,3 +1,4 @@
+using Bhaptics.Tact.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class BhapticToggleDotPoint : BhapticsDotPoint
 {
     void OnTriggerEnter(Collider other)
     {
-        if (!IsPlayer(other.gameObject))
+        if (HasComponent<HapticSender>(other.gameObject))
         {
             PlayEffect();
             Toggle();
