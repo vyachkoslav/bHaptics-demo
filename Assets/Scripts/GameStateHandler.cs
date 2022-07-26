@@ -35,7 +35,7 @@ public class GameStateHandler : MonoBehaviour
     void Start()
     {
         endMenu.SetActive(false);
-        GameManager.SetTimeScale(1);
+        GameManager.SetTimeScaleWithSound(1);
         
 
         if(playerData)
@@ -44,7 +44,7 @@ public class GameStateHandler : MonoBehaviour
 
     public void HandleLoose(string reason)
     {
-        GameManager.SetTimeScale(0.5f);
+        GameManager.SetTimeScaleWithSound(0.5f);
         StartCoroutine(ShowMenuAfterTime(reason, 2));
     }
     IEnumerator ShowMenuAfterTime(string title, float seconds)
@@ -62,6 +62,7 @@ public class GameStateHandler : MonoBehaviour
             dot.enabled = false;
 
         GameManager.SetTimeScale(0);
+        GameManager.SetSoundPitch(0.85f);
     }
     public void HandleWin()
     {

@@ -45,7 +45,15 @@ public class GameManager : MonoBehaviour
     public static void SetTimeScale(float scale)
     {
         Time.timeScale = scale;
+    }
+    public static void SetTimeScaleWithSound(float scale)
+    {
+        SetTimeScale(scale);
+        SetSoundPitch(scale);
+    }
+    public static void SetSoundPitch(float pitch)
+    {
         List<AudioSource> audios = new(FindObjectsOfType<AudioSource>());
-        audios.ForEach(x => x.pitch = scale);
+        audios.ForEach(x => x.pitch = pitch);
     }
 }
