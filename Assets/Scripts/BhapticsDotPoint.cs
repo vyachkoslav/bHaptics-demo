@@ -78,8 +78,4 @@ public class BhapticsDotPoint : MonoBehaviour
             TurnOff();
         }
     }
-    private void OnDisable()
-    {
-        TurnOff();
-    }
 }
