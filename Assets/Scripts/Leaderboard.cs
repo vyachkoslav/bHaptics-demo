@@ -58,7 +58,7 @@ public class Leaderboard : MonoBehaviour
 
         if (hs_get.error != null)
         {
-            print("There was an error getting the leaderboard: " + hs_get.error);
+            statusText.text = "Couldn't connect to the leaderboard.";
         }
         else
         {
