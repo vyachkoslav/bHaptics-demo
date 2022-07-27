@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateHandler : MonoBehaviour
 {
+    [Header("Game over behaviour")]
     /// <summary>
     /// Menu to appear when the game ends
     /// </summary>
@@ -25,10 +27,14 @@ public class GameStateHandler : MonoBehaviour
     /// </summary>
     [SerializeField] List<GameObject> objectsToHide;
 
+    [Header("Player settings")]
     // Player reset
     [SerializeField] Transform playerOrigin;
     [SerializeField] Transform playerTransform;
     [SerializeField] Vector3 defaultPosition;
+
+    [SerializeField] GameObject playerHolo;
+    [SerializeField] Toggle holoToggle;
 
     [SerializeField] PlayerData playerData;
 
@@ -36,10 +42,14 @@ public class GameStateHandler : MonoBehaviour
     {
         endMenu.SetActive(false);
         GameManager.SetTimeScaleWithSound(1);
-        
 
-        if(playerData)
+
+        if (playerData)
+        {
             playerOrigin.position = playerData.originPosition;
+            playerHolo.SetActive(playerData.isHologramOn);
+            holoToggle.isOn = playerData.isHologramOn;
+        }
     }
 
     public void HandleLoose(string reason)

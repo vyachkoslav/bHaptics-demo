@@ -11,4 +11,9 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public Vector3 originPosition;
+    public bool isHologramOn;
+    public void SetHologramActive(bool value)
+    {
+        isHologramOn = value;
+    }
 }
